@@ -1,6 +1,6 @@
 #include <iostream>
 #include <bits/stdc++.h>
-using namespace std;
+using namespace std; // Cooldown after a transaction and no buy or sell can be made on this day
 int solve(int index, int buy, vector<int> &prices)
 {
     int n = prices.size();
@@ -42,6 +42,54 @@ int solveMemo(int index, int buy, vector<int> &prices, vector<vector<int>> &dp)
     dp[index][buy] = profit;
     return dp[index][buy];
 }
+int solveTab(vector<int> &prices)
+{
+    int n = prices.size();
+    vector<vector<int>> dp(n + 2, vector<int>(3, 0));
+    for (int index = n - 1; index >= 0; index--)
+    {
+        for (int buy = 0; buy <= 1; buy++)
+        {
+            int profit = 0;
+            if (buy)
+            {
+                profit = max(-prices[index] + dp[index + 1][0], dp[index + 1][1]);
+            }
+            else
+            {
+                profit = max(prices[index] + dp[index + 2][1], dp[index + 1][0]);
+            }
+            dp[index][buy] = profit;
+        }
+    }
+    return dp[0][1];
+}
+int solveSO(vector<int> &prices)
+{
+    int n = prices.size();
+    vector<int> curr(3, 0);
+    vector<int> next(3, 0);
+    vector<int> nextToNext(3, 0);
+    for (int index = n - 1; index >= 0; index--)
+    {
+        for (int buy = 0; buy <= 1; buy++)
+        {
+            int profit = 0;
+            if (buy)
+            {
+                profit = max(-prices[index] + next[0], next[1]);
+            }
+            else
+            {
+                profit = max(prices[index] + nextToNext[1], next[0]);
+            }
+            curr[buy] = profit;
+        }
+        nextToNext = next;
+        next = curr;
+    }
+    return next[1];
+}
 int main()
 {
     vector<int> prices;
@@ -54,5 +102,7 @@ int main()
     vector<vector<int>> dp(n, vector<int>(3, -1));
     cout << solve(0, 1, prices) << endl;         // Recursion
     cout << solveMemo(0, 1, prices, dp) << endl; // Memoization
+    cout << solveTab(prices) << endl;            // Tabulation
+    cout << solveSO(prices) << endl;             // Space Optimized
     return 0;
 }
