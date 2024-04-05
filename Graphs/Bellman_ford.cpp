@@ -15,7 +15,6 @@ int Bellman_ford(vector<pair<pair<int, int>, int>> &edges, int V, int E, int src
             int u = edges[j].first.first;
             int v = edges[j].first.second;
             int w = edges[j].second;
-
             if (dist[u] + w < dist[v])
             {
                 dist[v] = dist[u] + w;
@@ -30,7 +29,6 @@ int Bellman_ford(vector<pair<pair<int, int>, int>> &edges, int V, int E, int src
         int u = edges[i].first.first;
         int v = edges[i].first.second;
         int w = edges[i].second;
-
         if (dist[u] != 1e9 && dist[u] + w < dist[v])
         {
             flag = true;
