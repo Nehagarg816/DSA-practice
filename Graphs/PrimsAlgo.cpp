@@ -3,7 +3,6 @@
 #include <unordered_map>
 #include <bits/stdc++.h>
 using namespace std;
-
 vector<pair<pair<int, int>, int>> Prims(int n, vector<pair<pair<int, int>, int>> &edge)
 {
     unordered_map<int, list<pair<int, int>>> adj;

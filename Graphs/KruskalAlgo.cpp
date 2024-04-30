@@ -73,7 +73,6 @@ int main()
     edges.push_back({3, 4, 5});
     edges.push_back({3, 6, 8});
     edges.push_back({4, 5, 9});
-    int ans = minimumSpanning(edges, 7);
-    cout << ans;
+    cout << "Minimum Spanning Tree Weight: " << minimumSpanning(edges, 7);
     return 0;
 }
