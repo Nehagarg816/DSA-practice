@@ -17,19 +17,13 @@ int solve(vector<int> &cost, int n)
 }
 int solve2(vector<int> &cost, int n, vector<int> &dp)
 {
-    if (n == 0)
-    {
-        return cost[0];
-    }
-    if (n == 1)
-    {
-        return cost[1];
-    }
+    dp[0] = cost[0];
+    dp[1] = cost[1];
     if (dp[n] != -1)
     {
         return dp[n];
     }
-    dp[n] = cost[n] + min(solve2(cost, n - 1, dp), solve2(cost, n - 2, dp));
+    dp[n] = min(solve2(cost, n - 1, dp), solve2(cost, n - 2, dp)) + cost[n];
     return dp[n];
 }
 int solve3(vector<int> &cost, int n)
@@ -65,9 +59,9 @@ int main()
     cost.push_back(5);
     int n = 5;
     vector<int> dp(n + 1, -1);
-    cout << solve(cost, n) << endl;      // Recursion
-    cout << solve2(cost, n, dp) << endl; // Recursion + Memoization
-    cout << solve3(cost, n) << endl;     // Tabulation
-    cout << solve4(cost, n);             // Space Optimization
+    cout << min(solve(cost, n - 1), solve(cost, n - 2)) << endl;           // Recursion
+    cout << min(solve2(cost, n - 1, dp), solve2(cost, n - 2, dp)) << endl; // Recursion + Memoization
+    cout << min(solve3(cost, n - 1), solve3(cost, n - 2)) << endl;         // Tabulation
+    cout << min(solve4(cost, 0), solve4(cost, 1));                         // Space Optimization
     return 0;
 }
