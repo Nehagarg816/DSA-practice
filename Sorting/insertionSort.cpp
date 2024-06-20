@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-void insertionSort(vector<int> &arr, int n)
+void insertionSort(vector<int> &arr, int n) // TC - O(N*N), easy, stable algorithm, useful for small data and nearly sorted data,not much efficient
 {
     for (int i = 1; i < n; i++)
     {

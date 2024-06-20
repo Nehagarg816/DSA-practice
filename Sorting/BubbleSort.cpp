@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-void BubbleSort(int arr[], int n) // Bubble Sorting
+void BubbleSort(int arr[], int n) // Bubble Sorting TC - O(N*N), stable algorithm( preserves the relative order with same key value), Not suitable for large database
 {
     for (int i = 0; i < n - 1; i++)
     {

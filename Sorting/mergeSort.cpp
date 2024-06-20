@@ -1,7 +1,7 @@
 #include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
-void merge(vector<int> &arr, int start, int mid, int end)
+void merge(vector<int> &arr, int start, int mid, int end) // TC - O(N*logN), SC - O(N), Easy to implement, stable, useful for large data, takes extra memory, not in-place
 {
     int n1 = mid - start + 1;
     int n2 = end - mid;

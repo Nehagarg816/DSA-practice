@@ -1,7 +1,7 @@
 #include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
-int pivot(vector<int> &arr, int low, int high)
+int pivot(vector<int> &arr, int low, int high) // TC - O(N*logN), Worst Case - O(N*N), useful for large data, not stable, low overhead
 {
     int pivot = arr[high];
     int i = low - 1;

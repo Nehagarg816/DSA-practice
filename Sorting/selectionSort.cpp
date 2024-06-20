@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-void selectionSort(vector<int> &arr, int n)
+void selectionSort(vector<int> &arr, int n) // TC - O(N*N) Useful for Small Database, Easy, Not stable(does not preserve relative order of elements)
 {
     for (int i = 0; i < n - 1; i++)
     {
