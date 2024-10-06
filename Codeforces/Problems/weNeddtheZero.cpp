@@ -6,33 +6,22 @@ int main()
     cin >> t;
     while (t--)
     {
-        int n;
+        int n, ans = 0;
         cin >> n;
-        vector<int> a(n);
-        int maxi = INT_MIN;
+        int arr[n];
         for (int i = 0; i < n; i++)
-            cin >> a[i];
-        maxi = max(maxi, a[i]);
-        for (int i = 0; i <= maxi + 1; i++)
         {
-            bool flag = false;
-            vector<int> b(n);
-            for (int j = 0; j < n; j++)
-            {
-                b[j] = a[j] ^ i;
-            }
-            for (int k : b)
-            {
-                x ^= k;
-                if (x == 0)
-                {
-                    flag == true;
-                }
-            }
-            if (flag == true)
-            {
-                cout << i << endl;
-            }
+            cin >> arr[i];
+            ans ^= arr[i];
+        }
+        if (!ans)
+            cout << "0" << endl;
+        else
+        {
+            if (n % 2 == 1)
+                cout << ans << endl;
+            else
+                cout << "-1" << endl;
         }
     }
 }
