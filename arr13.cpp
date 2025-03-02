@@ -13,27 +13,33 @@ int main()
             cin >> arr[i][j];
         }
     }
-    int row_start = 0, row_end = n - 1, column_start = 0, column_end = n - 1;
-    for (int col = column_start; col <= column_end; col++)
-    {
-        cout << arr[row_start][col] << " ";
+    int row_start = 0, row_end = n - 1, column_start = 0, column_end = n - 1,total=n*m,cnt=0;
+    while(cnt<total){
+        for (int col = column_start; col <= column_end and cnt<total; col++)
+        {
+            cout << arr[row_start][col] << " ";
+            cnt++;
+        }
+        row_start++;
+        for (int row = row_start; row <= row_end and cnt<total; row++)
+        {
+            cout << arr[row][column_end] << " ";
+            cnt++;
+        }
+        column_end--;
+        for (int col = column_end; col >= column_start and cnt<total; col--)
+        {
+            cout << arr[row_end][col] << " ";
+            cnt++;
+        }
+        row_end--;
+        for (int row = row_end; row >= row_start and cnt<total; row--)
+        {
+            cout << arr[row][column_start] << " ";
+            cnt++;
+        }
+        column_start++;
     }
-    row_start++;
-    for (int row = row_start; row <= row_end; row++)
-    {
-        cout << arr[row][column_end] << " ";
-    }
-    column_end--;
-    for (int col = column_end; col >= column_start; col--)
-    {
-        cout << arr[row_end][col] << " ";
-    }
-    row_end--;
-    for (int row = row_end; row >= row_start; row--)
-    {
-        cout << arr[row][column_start] << " ";
-    }
-    column_start++;
 
     return 0;
 }
