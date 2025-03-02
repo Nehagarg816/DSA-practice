@@ -1,5 +1,5 @@
 #include <iostream>
-using namespace std; // Insertion at front in circular linked list
+using namespace std; // Insertion and reverse in circular linked list
 class Node
 {
 public:
@@ -30,6 +30,22 @@ public:
         ptr->next = head;
         head = ptr;
         display(head);
+        cout << endl;
+    }
+    void reverse(Node *head)
+    {
+        Node *prev = NULL;
+        Node *curr = head;
+        Node *next = NULL;
+        do
+        {
+            next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+        } while (curr != head);
+        head->next = prev;
+        display(head);
     }
 };
 
@@ -48,5 +64,6 @@ int main()
     fourth->data = 4;
     fourth->next = head;
     head->InsertionAtFront(head, 5);
+    head->reverse(head);
     return 0;
 }

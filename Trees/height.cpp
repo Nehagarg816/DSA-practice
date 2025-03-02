@@ -1,6 +1,6 @@
 #include <iostream>
 #include <bits/stdc++.h>
-using namespace std; // height of a Binary Tree
+using namespace std; // insertion in Binary Search Tree
 class Node
 {
 public:
@@ -13,17 +13,47 @@ public:
         left = right = NULL;
     }
 };
-int heightOfTree(Node *root)
+// insertion in binary search tree
+void insertion(Node *root, int val)
 {
     if (root == NULL)
     {
-        return 0;
+        root = new Node(val);
+        return;
     }
-    int ans = 0;
-    int lft = heightOfTree(root->left);
-    int rgt = heightOfTree(root->right);
-    ans = max(lft, rgt) + 1;
-    return ans;
+    if (val < root->data)
+    {
+        if (root->left == NULL)
+        {
+            root->left = new Node(val);
+        }
+        else
+        {
+            insertion(root->left, val);
+        }
+    }
+    else
+    {
+        if (root->right == NULL)
+        {
+            root->right = new Node(val);
+        }
+        else
+        {
+            insertion(root->right, val);
+        }
+    }
+}
+// printing the bst
+void printBst(Node *root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+    printBst(root->left);
+    cout << root->data << " ";
+    printBst(root->right);
 }
 int main()
 {
@@ -33,6 +63,7 @@ int main()
     root->right = new Node(2);
     root->left->left = new Node(4);
     root->right->right = new Node(5);
-    cout << heightOfTree(root);
+    insertion(root, 6);
+    printBst(root);
     return 0;
 }
